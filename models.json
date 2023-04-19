@@ -1,0 +1,8 @@
+{
+    "models":[
+        {"name": "Model 1",
+        "description" :"This is description",
+        "marker" : "markerLink",
+        "model": "modelLink"}
+    ]
+}

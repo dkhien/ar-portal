@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa model</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="/fonts/themify-icons/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/style/general.css"
+    />
+    <link rel="stylesheet" href="./style/addNewModel.css">
+    
+</head>
+<body>
+    
+    <header> 
+        <div class="header-logo">
+            <a href="models.html"><img src="../img/uetlogo.png" alt=""></a>
+        </div>
+        
+        <div class="header-user">
+            <a href='../view/logout.php'>Đăng xuất</a>
+        </div>
+        
+        
+    </header>
+    
+    <div class="main">
+
+    
+        <div class="content">
+            <div class="app-container">
+                <div class="title-container">
+                    <h4>SỬA MODEL</h4>
+                </div>
+    
+                <!-- Start form container -->
+                <div class="form-container">
+                    <form action="admin_themhocphan.php" method="POST">
+
+                        <label for="name">Tên model</label>
+                        <input type="text" name="name" placeholder="">
+                        <label for="desc">Mô tả</label>
+                        <textarea type="text" name="desc" placeholder=""></textarea> 
+                        <label for="marker">Marker</label> 
+                        <div class='file-input'>
+                            <input name = "marker" type='file'>
+                            <div class='fileButton'>Choose</div>
+                            <div class='label' data-js-label>No file selected</div>
+                          </div>
+                        <label for="model">Model 3D</label> 
+                        <div class='file-input'>
+                            <input name = "model" type='file'>
+                            <div class='fileButton'>Choose</div>
+                            <div class='label' data-js-label>No file selected</div>
+                          </div>
+                        <input type="submit" name="themhocphan" value="XÁC NHẬN" id="submitInput">
+                    </form>
+                </div>
+    
+                <!-- End form container -->
+            </div>
+        </div>
+    </div>
+    <script src="/script/uploadFile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="/bootstrap/js/jquery-3.6.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

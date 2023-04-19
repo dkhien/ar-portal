@@ -1,0 +1,121 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Quản lý model</title>
+      <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+      <link
+        rel="stylesheet"
+        href="/fonts/themify-icons/themify-icons.css"
+      />
+      <link
+        rel="stylesheet"
+        href="/style/general.css"
+      />
+    <link rel="stylesheet" href="./style/models.css">
+      
+  </head>
+  <body>
+      
+      <header>
+          
+          <div class="header-logo">
+            <a href="models.html"><img src="/img/uetlogo.png" alt=""></a>
+          </div>
+          
+          <div class="header-user">
+              <a href='logout.php'>Đăng xuất</a>
+          </div>
+          
+          
+      </header>
+      
+      <div class="main">
+  
+      
+          <div class="content">
+              <div class="app-container">
+                  <div class="title-container">
+                      
+                      <div id="function-container">
+                          <div id="add-container">
+  
+                              <form method="POST"  action="../controller/admin_themhocphan.php">
+                              <input class="button btn btn-primary" id="addButton" type="submit" name="" value="Thêm học phần"></form>
+                          </div>
+                          <div id="title">
+  
+                              <h4>QUẢN LÝ MODEL</h4>
+                          </div>
+                          <div id="search-container">
+                              <div class="search-icon"><i class="ti-search"></i></div>
+                              <input id="searchInput" onkeyup="searchTable()" type='text' placeholder="Tìm kiếm">
+                          </div>
+                          
+                          
+                      </div>
+  
+                  </div>
+                  
+                  <!-- Start form container -->
+                  
+                  
+                  <div class="form-container">
+                          <div class="table-scroll">
+                              
+                              <table id="bangHocPhan" class="table table-borderless table-hover">
+                                  <thead  class="thead-dark">
+  
+                                      <tr id="tableHeader">
+                                        <td><b>STT</b></td>
+                                        <td><b>Tên</b></td>
+                                        <td><b>Mô tả</b></td>
+                                        <td><b>Marker</b></td>
+                                        <td><b>Model</b></td>
+                                        <td><b>Sửa</b></td>
+                                        <td><b>Xoá</b></td>
+                                      </tr>
+                                  </thead>
+                                  <tbody id="modelTableBody">
+                                  </tbody>
+                              </table>
+                          </div>
+                  </div>
+      
+                  <!-- End form container -->
+              </div>
+          </div>
+      </div>
+  
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+      <script src="/bootstrap/js/jquery-3.6.0.js"></script>
+      <script src="/bootstrap/js/bootstrap.min.js"></script>
+      <script>
+      function searchTable() {
+          var input, filter, found, table, tr, td, i, j;
+          input = document.getElementById("searchInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("bangHocPhan");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td");
+              for (j = 0; j < td.length; j++) {
+                  if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                      found = true;
+                  }
+              }
+              if (found) {
+                  tr[i].style.display = "";
+                  found = false;
+              } else if (!tr[i].id.match('^tableHeader')) {
+                  tr[i].style.display = "none";
+              }
+          }
+      }
+      </script>
+        <script src="script/models.js"></script>
+  </body>
+  </html>
