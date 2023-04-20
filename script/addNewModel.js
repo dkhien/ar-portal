@@ -59,6 +59,15 @@ submitInput.addEventListener("click", async (event) => {
       "Content-Type": "application/json"
     }
   });
+
+  // Post the formData object to Heroku to insert into Vuforia Database
+  fetch("https://afternoon-dusk-32468.herokuapp.com/", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
 });
 
 
