@@ -27,7 +27,7 @@
           </div>
           
           <div class="header-user">
-              <a href='logout.php'>Đăng xuất</a>
+            <a id="logoutButton" href="login.html">Đăng xuất</a>
           </div>
           
           
@@ -42,9 +42,7 @@
                       
                       <div id="function-container">
                           <div id="add-container">
-  
-                              <form method="POST"  action="../controller/admin_themhocphan.php">
-                              <input class="button btn btn-primary" id="addButton" type="submit" name="" value="Thêm học phần"></form>
+                              <a class="button btn btn-primary" id="addButton" target="_blank" href="addNewModel.html">Thêm model</a>
                           </div>
                           <div id="title">
   
@@ -61,7 +59,6 @@
                   </div>
                   
                   <!-- Start form container -->
-                  
                   
                   <div class="form-container">
                           <div class="table-scroll">
@@ -93,29 +90,8 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
       <script src="/bootstrap/js/jquery-3.6.0.js"></script>
       <script src="/bootstrap/js/bootstrap.min.js"></script>
-      <script>
-      function searchTable() {
-          var input, filter, found, table, tr, td, i, j;
-          input = document.getElementById("searchInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("bangHocPhan");
-          tr = table.getElementsByTagName("tr");
-          for (i = 0; i < tr.length; i++) {
-              td = tr[i].getElementsByTagName("td");
-              for (j = 0; j < td.length; j++) {
-                  if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                      found = true;
-                  }
-              }
-              if (found) {
-                  tr[i].style.display = "";
-                  found = false;
-              } else if (!tr[i].id.match('^tableHeader')) {
-                  tr[i].style.display = "none";
-              }
-          }
-      }
-      </script>
-        <script src="script/models.js"></script>
+      <script src="script/searchTable.js"></script>
+        <script type="module" src="script/models.js"></script>
+        <script src="script/logout.js"></script>
   </body>
   </html>

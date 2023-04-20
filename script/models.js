@@ -1,5 +1,24 @@
-const modelList = [];
+import { getDatabase, ref, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDxag9sUnLJlx0jdH4gH5Lw98wjD1OI6Ww",
+  authDomain: "portal-fad1c.firebaseapp.com",
+  databaseURL: "https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "portal-fad1c",
+  storageBucket: "portal-fad1c.appspot.com",
+  messagingSenderId: "366187279512",
+  appId: "1:366187279512:web:cdfaca11ead46624d0cced",
+  measurementId: "G-KXVB9X45VB"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase();
+
+const modelList = [];
 fetch('https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/models.json')
   .then(response => response.json())
   .then(data => {
@@ -45,9 +64,10 @@ fetch('https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/mo
         
         // Edit button
         let editButton = document.createElement("a");
-        editButton.setAttribute("href", "admin_suahocphan.php?mahocphan=" + modelList[i].objectId);
+        editButton.setAttribute("href", `modifyModel.html?objectId=${modelList[i].id}`);
         editButton.setAttribute("style", "padding: 0 0.4rem;");
         editButton.setAttribute("class", "btn btn-warning");
+        editButton.setAttribute("target", "_blank");
         let editIcon = document.createElement("i");
         editIcon.setAttribute("class", "ti-pencil");
         editButton.appendChild(editIcon);
@@ -55,13 +75,27 @@ fetch('https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/mo
         
         // Delete button
         let deleteButton = document.createElement("a");
-        deleteButton.setAttribute("href", "admin_xoahocphan.php?mahocphan=" + modelList[i].objectId);
+        deleteButton.setAttribute("data-id", modelList[i].id);
         deleteButton.setAttribute("style", "padding: 0 0.4rem;");
         deleteButton.setAttribute("class", "btn btn-danger");
         let deleteIcon = document.createElement("i");
         deleteIcon.setAttribute("class", "ti-trash");
         deleteButton.appendChild(deleteIcon);
         deleteButtonCell.appendChild(deleteButton);
+
+        deleteButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          if (window.confirm("Are you sure you want to delete this model?")) {
+            let objectId = event.currentTarget.getAttribute('data-id');
+            let objectRef = ref(db, "models/"+objectId);
+            remove(objectRef).then(() => {
+              console.log("Object removed");
+              location.reload();
+            });
+          } 
+          
+        });
+        
       
         modelCell.appendChild(modelLink);
         markerCell.appendChild(markerLink);

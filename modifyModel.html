@@ -14,7 +14,7 @@
       rel="stylesheet"
       href="/style/general.css"
     />
-    <link rel="stylesheet" href="./style/addNewModel.css">
+    <link rel="stylesheet" href="./style/modifyModel.css">
     
 </head>
 <body>
@@ -25,7 +25,7 @@
         </div>
         
         <div class="header-user">
-            <a href='../view/logout.php'>Đăng xuất</a>
+            <a id="logoutButton" href="login.html">Đăng xuất</a>
         </div>
         
         
@@ -42,7 +42,7 @@
     
                 <!-- Start form container -->
                 <div class="form-container">
-                    <form action="admin_themhocphan.php" method="POST">
+                    <div id="addModelForm">
 
                         <label for="name">Tên model</label>
                         <input type="text" name="name" placeholder="">
@@ -52,16 +52,22 @@
                         <div class='file-input'>
                             <input name = "marker" type='file'>
                             <div class='fileButton'>Choose</div>
-                            <div class='label' data-js-label>No file selected</div>
+                           
+                            <div class='label' id="markerLabel" data-js-label>No file chosen</div>
+                            
                           </div>
+                          <div id="currentMarker"></div>
                         <label for="model">Model 3D</label> 
                         <div class='file-input'>
                             <input name = "model" type='file'>
                             <div class='fileButton'>Choose</div>
-                            <div class='label' data-js-label>No file selected</div>
+                            
+                            <div class='label' id="modelLabel" data-js-label>No file chosen</div>
+                            
                           </div>
-                        <input type="submit" name="themhocphan" value="XÁC NHẬN" id="submitInput">
-                    </form>
+                          <div id="currentModel"></div>
+                        <button id="submitInput">XÁC NHẬN</button>
+                    </div>
                 </div>
     
                 <!-- End form container -->
@@ -72,5 +78,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="/bootstrap/js/jquery-3.6.0.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="module" src="./script/modifyModel.js"></script>
+    <script src="script/logout.js"></script>
 </body>
 </html>

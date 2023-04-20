@@ -37,6 +37,8 @@ header{
     justify-content: flex-end;
     padding-right: 5%;
 }
+
+
 .header-user i{
     font-size: small;
 }
@@ -120,32 +122,43 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
-.form-container input {
+#addModelForm{
+    width: 100%;
+}
+
+.form-container input, textarea {
     height: 50px;
+    display: block;
     padding: 20px 10px;
-    width: 80%;
+    width: 50%;
     margin-bottom: 40px;
+    margin-right: auto;
+    margin-left: auto;
     font-size: medium;
     border: none;
-    /* border-bottom: 2px #ccc solid; */
     background: #F1F1F1;
     transition: 0.2s ease-out;
 }
-.form-container input:focus{
+
+.form-container textarea {
+    height: 200px;
+    /* overflow: scroll; */
+}
+
+.form-container input:focus, textarea:focus{
     background: #ddd;
     outline: none;
 }
-.form-container td{
-    /* vertical-align: middle; */
-    text-align:center;
-}
+
 .form-container #submitInput{
 
     display: block;
     padding: 1%;
     margin: 0 auto;
+    margin-top: 80px;
     width: 90%;
     height: auto;
     font-size: x-large;
@@ -158,3 +171,58 @@ header{
     opacity: 0.9;
     
 }
+
+.file-input {
+    display: block;
+    text-align: left;
+    background: #fff;
+    position: relative;
+    border-radius: 3px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .file-input > [type='file'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+  .file-input > .fileButton {
+    display: inline-block;
+    cursor: pointer;
+    background: #eee;
+    padding: 8px 16px;
+    border-radius: 2px;
+    margin-right: 8px;
+  }
+  
+  .file-input:hover > .fileButton {
+    background: dodgerblue;
+    color: white;
+  }
+  
+  .file-input > .label {
+    display: inline-block;
+    color: #333;
+    white-space: nowrap;
+    opacity: .3;
+    /* border: 1px solid #324F90; */
+    padding: 8px 0;
+
+  }
+  
+  #currentMarker, #currentModel{
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .file-input.-chosen > .label {
+    opacity: 1;
+  }
