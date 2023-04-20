@@ -19,3 +19,4 @@ function customInput (el) {
     label.innerText = value
   }
 }
+
