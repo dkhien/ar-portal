@@ -120,6 +120,13 @@ submitInput.addEventListener("click", async (event) => {
       },
     }
   );
+  fetch("https://afternoon-dusk-32468.herokuapp.com/", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
   }
   
 
