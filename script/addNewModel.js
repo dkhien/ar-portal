@@ -52,7 +52,7 @@ submitInput.addEventListener("click", async (event) => {
   const markerUploadTask = uploadBytesResumable(markerRef, markerFile);
   const modelUploadTask = uploadBytesResumable(modelRef, modelFile);
   let markerURL, modelURL;
-  
+
   markerUploadTask.on(
     "state_changed",
     (snapshot) => {
@@ -74,7 +74,7 @@ submitInput.addEventListener("click", async (event) => {
       });
     }
   );
-  
+
   modelUploadTask.on(
     "state_changed",
     (snapshot) => {
@@ -96,39 +96,49 @@ submitInput.addEventListener("click", async (event) => {
       });
     }
   );
-  
-  function updateFormData() {
+
+  async function updateFormData() {
     console.log("Object added to database successfully");
     alert("Object added to database successfully");
-  
+
     // Update the formData object with the file download URLs
     const formData = {
       name: name,
       description: description,
       marker: markerURL,
       model: modelURL,
+      id: ""
     };
-  
-      // Post the formData object to Firebase Realtime Database
-  fetch(
-    "https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/models.json",
-    {
+
+
+    await fetch("https://afternoon-dusk-32468.herokuapp.com/", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  fetch("https://afternoon-dusk-32468.herokuapp.com/", {
-    method: "POST",
-    body: JSON.stringify(formData),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      if (response && response.target_id) {
+        formData["id"] = response.target_id;
+      }
+    })
+    .then(response => console.log(formData))
+
+    // Post the formData object to Firebase Realtime Database
+    await fetch("https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/models.json",
+      {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
   }
-  
+
 
 
 });

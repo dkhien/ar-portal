@@ -130,7 +130,8 @@ get(objectRef).then((snapshot) => {
           name: name,
           description: description,
           marker: markerURL.getAttribute("href"),
-          model: modelURL.getAttribute("href")
+          model: modelURL.getAttribute("href"),
+          id: objectData.id
         }).then(() => {
           alert("Modified object successfully");
           console.log("Data saved successfully");
@@ -147,6 +148,18 @@ get(objectRef).then((snapshot) => {
     alert("Object not found");
     console.log("Object not found");
   }
+
+  fetch("http://localhost:3000/delete",
+    {
+      method: "POST",
+      body: JSON.stringify(objectData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+  
+
 }).catch((error) => {
   console.log(error);
 })

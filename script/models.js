@@ -1,4 +1,4 @@
-import { getDatabase, ref, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, remove, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
 
@@ -85,15 +85,34 @@ fetch('https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/mo
 
         deleteButton.addEventListener("click", (event) => {
           event.preventDefault();
+          let id = ""
           if (window.confirm("Are you sure you want to delete this model?")) {
             let objectId = event.currentTarget.getAttribute('data-id');
-            let objectRef = ref(db, "models/"+objectId);
+            let objectRef = ref(db, "models/" + objectId);
             remove(objectRef).then(() => {
               console.log("Object removed");
               location.reload();
             });
-          } 
-          
+            get(objectRef).then((snapshot) => {
+              if (snapshot.exists()) {
+                let objectData = snapshot.val();
+                id = objectData["id"];
+                console.log(id)
+                const data = {"id" : id}
+                fetch("http://localhost:3000/delete",
+                  {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                )
+              }
+            })
+          }
+
+  
         });
         
       
