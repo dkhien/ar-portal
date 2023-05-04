@@ -139,9 +139,24 @@ get(objectRef).then((snapshot) => {
           console.error(error);
           alert("Failed to save object data");
         });
-
+      }).then(() => {
+        fetch("http://localhost:3000/update",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              name: name,
+              marker: markerURL.getAttribute("href"),
+              id: objectData.id
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
       })
-    })
+    });
+
+
   }
 
   else {
@@ -149,16 +164,8 @@ get(objectRef).then((snapshot) => {
     console.log("Object not found");
   }
 
-  fetch("http://localhost:3000/delete",
-    {
-      method: "POST",
-      body: JSON.stringify(objectData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  )
-  
+
+
 
 }).catch((error) => {
   console.log(error);
