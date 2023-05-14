@@ -98,9 +98,6 @@ submitInput.addEventListener("click", async (event) => {
   );
 
   async function updateFormData() {
-    console.log("Object added to database successfully");
-    alert("Object added to database successfully");
-
     // Update the formData object with the file download URLs
     const formData = {
       name: name,
@@ -126,9 +123,9 @@ submitInput.addEventListener("click", async (event) => {
       }
     })
     .then(response => console.log(formData))
-
-    // Post the formData object to Firebase Realtime Database
-    await fetch("https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/models.json",
+    .then(() => {
+          // Post the formData object to Firebase Realtime Database
+      fetch("https://portal-fad1c-default-rtdb.asia-southeast1.firebasedatabase.app/models.json",
       {
         method: "POST",
         body: JSON.stringify(formData),
@@ -137,6 +134,14 @@ submitInput.addEventListener("click", async (event) => {
         },
       }
     )
+    })
+    .then(() => {
+      console.log("Object added to database successfully");
+      alert("Object added to database successfully");
+    })
+
+
+
   }
 
 
